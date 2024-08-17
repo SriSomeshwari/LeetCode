@@ -1,31 +1,52 @@
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Scanner;
+
 class Solution {
     public String largestNumber(int[] nums) {
      
-        String[] numStrings = new String[nums.length];
+        String[] strNums = new String[nums.length];
         for (int i = 0; i < nums.length; i++) {
-            numStrings[i] = String.valueOf(nums[i]);
+            strNums[i] = Integer.toString(nums[i]);
         }
-        
-        Arrays.sort(numStrings, new Comparator<String>() {
+
+    
+        Arrays.sort(strNums, new Comparator<String>() {
             @Override
-            public int compare(String n1, String n2) {
-                String order1 = n1 + n2;
-                String order2 = n2 + n1;
-                return order2.compareTo(order1); 
+            public int compare(String s1, String s2) {
+               
+                return (s2 + s1).compareTo(s1 + s2);
             }
         });
-        
-        
-        if (numStrings[0].equals("0")) {
+
+        if (strNums[0].equals("0")) {
             return "0";
         }
-        
-    
-        StringBuilder largestNumber = new StringBuilder();
-        for (String numString : numStrings) {
-            largestNumber.append(numString);
+
+     
+        StringBuilder largestNum = new StringBuilder();
+        for (String num : strNums) {
+            largestNum.append(num);
         }
-        
-        return largestNumber.toString();
+
+        return largestNum.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int[] nums = new int[n];
+        System.out.println("Enter the elements:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        Solution solution = new Solution();
+        System.out.println("Largest Number: " + solution.largestNumber(nums));
+
+        scanner.close();
     }
 }
