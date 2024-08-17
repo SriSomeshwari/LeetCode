@@ -13,9 +13,9 @@ class Solution {
         int n=s.length();
         int[] lps=new int[n];
         int length = 0;
-        int i = 1;
+        int i=1;
 
-        while (i < n) {
+        while (i<n) {
             if (s.charAt(i) == s.charAt(length)) {
                 length++;
                 lps[i] = length;
