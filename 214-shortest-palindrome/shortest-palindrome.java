@@ -3,13 +3,13 @@ class Solution {
         
         String rev = new StringBuilder(s).reverse().toString();
         String l=s + "#" + rev;
-        int[] lps=computeLPSArray(l);
+        int[] lps=lpsArray(l);
         String add=rev.substring(0, rev.length() - lps[lps.length - 1]);
         return add+s;
     }
 
   
-    private int[] computeLPSArray(String s) {
+    private int[] lpsArray(String s) {
         int n=s.length();
         int[] lps=new int[n];
         int length = 0;
@@ -30,6 +30,5 @@ class Solution {
             }
         }
          return lps;
-
     }
 }
